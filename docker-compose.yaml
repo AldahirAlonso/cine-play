@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    restart: unless-stopped
+    environment:
+      - 'POSTGRES_DB=cine_play_db'
+      - 'POSTGRES_PASSWORD=bicho'
+      - 'POSTGRES_USER=aldahir'
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/data/postgres
+volumes:
+  pgdata:
