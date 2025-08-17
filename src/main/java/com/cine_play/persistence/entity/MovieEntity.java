@@ -24,7 +24,7 @@ public class MovieEntity {
     @Column(name = "fecha_estreno")
     private LocalDate fechaEstreno;
 
-    @Column(nullable = false, scale = 2)
+    @Column(precision = 3, scale = 2)
     private BigDecimal clasificacion;
 
     @Column(nullable = false, length = 1)
