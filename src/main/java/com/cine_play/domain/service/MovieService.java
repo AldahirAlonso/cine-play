@@ -1,6 +1,7 @@
 package com.cine_play.domain.service;
 
 import com.cine_play.domain.dto.MovieDto;
+import com.cine_play.domain.dto.UpdateMovieDto;
 import com.cine_play.domain.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,9 @@ public class MovieService {
 
     public MovieDto add(MovieDto movieDto) {
         return this.movieRepository.save(movieDto);
+    }
+
+    public MovieDto update(long id, UpdateMovieDto updateMovieDto) {
+        return this.movieRepository.update(id, updateMovieDto);
     }
 }
