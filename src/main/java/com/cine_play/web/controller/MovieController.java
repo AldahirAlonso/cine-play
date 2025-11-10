@@ -5,12 +5,9 @@ import com.cine_play.domain.dto.SuggestRequestDto;
 import com.cine_play.domain.dto.UpdateMovieDto;
 import com.cine_play.domain.service.CinePlayAiService;
 import com.cine_play.domain.service.MovieService;
-import dev.langchain4j.service.UserMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.Path;
-
 import java.util.List;
 
 @RestController
