@@ -5,7 +5,13 @@ import com.cine_play.domain.dto.SuggestRequestDto;
 import com.cine_play.domain.dto.UpdateMovieDto;
 import com.cine_play.domain.service.CinePlayAiService;
 import com.cine_play.domain.service.MovieService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
+@Tag(name = "Movies", description = "Operations about movies of CinePlay")
 public class MovieController {
     private final MovieService movieService;
     private final CinePlayAiService aiService;
@@ -28,7 +35,15 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDto> getById(@PathVariable long id) {
+    @Operation(
+            summary = "Obtener pelicula por su identificador.",
+            description = "Retorna la pelicula que coincide con el identificador enviado.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Pelicula encontrada"),
+                    @ApiResponse(responseCode = "404", description = "Pelicula no encontrada", content = @Content)
+            }
+    )
+    public ResponseEntity<MovieDto> getById(@Parameter(description = "Identificador de la pelicula a recuperar", example = "9") @PathVariable long id) {
         MovieDto movieDto = this.movieService.getById(id);
 
         if  (movieDto == null) {
